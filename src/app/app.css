@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+img{
+    width: 200px;
+}
+
+.auto-card{
+    margin: 20px;
+    width: 20%;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px gray;
+    height: fit-content;
+}
