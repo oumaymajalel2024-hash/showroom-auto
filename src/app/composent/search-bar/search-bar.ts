@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Auto } from '../../interfaces/auto';
@@ -9,13 +9,19 @@ import { Auto } from '../../interfaces/auto';
   styleUrl: './search-bar.css',
   templateUrl: './search-bar.html',
 })
-export class SearchBar {
+export class SearchBar implements OnChanges {
    faMagnifyingGlass = faMagnifyingGlass
 @Input() autos: Auto[] = []
+@Input() selectedCar: Auto | null = null
 
-@Output() onselectCar = new EventEmitter<Auto>();
+@Output() onselectCar = new EventEmitter<Auto | null>();
 
 selectedAutos: Auto[]= []
+
+ngOnChanges(){
+  this.selectedAutos = this.autos
+}
+
 selectAutos(selectdebrand: string){
      if(selectdebrand){
        this.selectedAutos=this.autos.filter(
@@ -26,8 +32,7 @@ selectAutos(selectdebrand: string){
      }
 
   selectCar(auto: Auto){
-    this.onselectCar.emit(auto)
+    this.onselectCar.emit(this.selectedCar?.id === auto.id ? null : auto)
 
   }
 }
-

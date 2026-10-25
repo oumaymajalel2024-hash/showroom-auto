@@ -15,9 +15,9 @@ export class App {
     this.title.set('My showroom');
   }
   
-  selectedCar?: Auto
+  selectedCar: Auto | null = null
 
-  selectCar(auto: Auto){
+  selectCar(auto: Auto | null){
     this.selectedCar=auto
   }
    

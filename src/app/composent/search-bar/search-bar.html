@@ -1,7 +1,15 @@
-<div class="container">
-  <label>Brand</label>
-  <input type="text" #brand (input)="selectAutos(brand.value)" />
+<div class="search-wrapper">
+  <label for="brand-search">Find your next car</label>
+  <div class="search-box">
+    <input
+      id="brand-search"
+      type="text"
+      #brand
+      placeholder="Search by brand..."
+      (input)="selectAutos(brand.value)"
+    />
   <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+  </div>
 </div>
 
 <div class="cars-container">
@@ -15,9 +23,14 @@
           Price : {{ auto.price }} DNT <br />
           Only {{ auto.availability }} units in stock
         </p>
+        @if (selectedCar?.id === auto.id) {
+          <p>{{ auto.description }}</p>
+        }
       </div>
       <div class="see_more">
-        <button (click)="selectCar(auto)">See more...</button>
+        <button (click)="selectCar(auto)">
+          {{ selectedCar?.id === auto.id ? 'See less' : 'See more...' }}
+        </button>
       </div>
     </div>
   }

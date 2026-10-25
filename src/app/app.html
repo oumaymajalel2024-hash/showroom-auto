@@ -1,26 +1,6 @@
 <app-head-bar></app-head-bar>
-<app-search-bar [autos]="autoList" (onselectCar)="selectCar($event)"></app-search-bar>
-
-@if (selectedCar) {
-  {{ selectedCar.model }} <br />
-  <p>{{ selectedCar.description }}</p>
-}
-
- <div class="container">
-  @for (auto of autoList; track auto.id) {
-    <div class="auto-card">
-      <img [src]="`images/${auto.photo}`" alt="" />
-      <div class="details">
-        <h3>{{ auto.brand }} {{ auto.model }}</h3>
-        <p>
-          power : {{ auto.power }} <br />
-          Price : {{ auto.price }} DNT <br />
-          Only {{ auto.availability }} units in stock
-        </p>
-      </div>
-      <div class="see_more">
-        <button>See more...</button>
-      </div>
-    </div>
-  }
-</div>
+<app-search-bar
+  [autos]="autoList"
+  [selectedCar]="selectedCar"
+  (onselectCar)="selectCar($event)"
+></app-search-bar>
